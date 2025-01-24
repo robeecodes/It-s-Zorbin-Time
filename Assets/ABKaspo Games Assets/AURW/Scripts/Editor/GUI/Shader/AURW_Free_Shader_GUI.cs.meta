@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 30228ad53ab07ae4089f940cd2fb9416
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 195139
+  packageName: A.U.R.W Free URP version
+  packageVersion: 4.0
+  assetPath: Assets/ABKaspo Games Assets/AURW/Scripts/Editor/GUI/Shader/AURW_Free_Shader_GUI.cs
+  uploadId: 619889

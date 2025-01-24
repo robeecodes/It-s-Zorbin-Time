@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 852876cc569f72649b41ec9ef82412cb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 195139
+  packageName: A.U.R.W Free URP version
+  packageVersion: 4.0
+  assetPath: Assets/ABKaspo Games Assets/AURW/Scripts/PlanarReflections.cs
+  uploadId: 619889

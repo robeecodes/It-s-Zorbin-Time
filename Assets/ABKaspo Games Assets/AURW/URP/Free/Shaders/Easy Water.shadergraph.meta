@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8ffa9af80ce14f94ab84cec797642cad
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 195139
+  packageName: A.U.R.W Free URP version
+  packageVersion: 4.0
+  assetPath: Assets/ABKaspo Games Assets/AURW/URP/Free/Shaders/Easy Water.shadergraph
+  uploadId: 619889
