@@ -86,6 +86,7 @@ namespace StarterAssets
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
+        private Alteruna.Avatar _alterunaAvatar;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -130,6 +131,8 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+            
+            _alterunaAvatar = GetComponent<Alteruna.Avatar>();
         }
 
         private void Start()
@@ -150,10 +153,13 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+            
+            _playerInput.enabled = _alterunaAvatar.IsMe;
         }
 
         private void Update()
         {
+            if (!_alterunaAvatar.IsMe) return;
             _hasAnimator = TryGetComponent(out _animator);
 
             JumpAndGravity();
@@ -163,6 +169,7 @@ namespace StarterAssets
 
         private void LateUpdate()
         {
+            if (!_alterunaAvatar.IsMe) return;
             CameraRotation();
         }
 
