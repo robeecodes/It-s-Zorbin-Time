@@ -29,9 +29,9 @@ public class CheckCollisions : MonoBehaviour {
         if (collision.gameObject.name != "Zorb") return;
         var collisionBody = collision.gameObject.GetComponent<RigidbodySynchronizable>();
         if (_rb.velocity.magnitude > collisionBody.velocity.magnitude) {
-            collisionBody.AddForce(transform.forward * 10, ForceMode.Impulse);
+            collisionBody.AddForce(transform.forward * 100, ForceMode.Impulse);
         } else {
-            _rb.AddForce(collision.transform.forward * 10, ForceMode.Impulse);
+            _rb.AddForce(collision.transform.forward * 100, ForceMode.Impulse);
         }
     }
 }
