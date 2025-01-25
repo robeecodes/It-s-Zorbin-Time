@@ -1,22 +1,30 @@
+using System;
 using Alteruna;
 using UnityEngine;
 
-
 public class ControlZorb : MonoBehaviour {
     [SerializeField] private float moveSpeed = 3f;
-    [SerializeField] private RigidbodySynchronizable zorb;
-
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private GameObject zorb;
+    
+    private CheckCollisions _zorbCollider;
+    private RigidbodySynchronizable _zorbRigidbody;
+    
     private Camera _mainCamera;
-
     private Alteruna.Avatar _avatar;
 
     private void Awake() {
         _avatar = GetComponent<Alteruna.Avatar>();
         _mainCamera = Camera.main;
+        _zorbCollider = zorb.GetComponent<CheckCollisions>();
+        _zorbRigidbody = zorb.GetComponent<RigidbodySynchronizable>();
     }
-
-    private void Start() {
+    
+    private void Update() {
         if (!_avatar.IsMe) return;
+        if (Input.GetKeyDown(KeyCode.Space) && _zorbCollider.grounded) {
+            _zorbRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     private void FixedUpdate() {
@@ -37,6 +45,6 @@ public class ControlZorb : MonoBehaviour {
 
         Vector3 movement = cameraRight * horizontalInput + cameraForward * verticalInput;
 
-        zorb.AddForce(movement * moveSpeed, ForceMode.VelocityChange);
+        _zorbRigidbody.AddForce(movement * moveSpeed, ForceMode.VelocityChange);
     }
 }

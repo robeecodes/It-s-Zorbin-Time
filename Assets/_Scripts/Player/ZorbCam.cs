@@ -22,11 +22,11 @@ public class ZorbCam : MonoBehaviour {
     // Cinemachine camera variables
     private float _cinemachineTargetYaw;
     private float _cinemachineTargetPitch;
-    private float _originalCameraTargetY;
 
     private GameObject _mainCamera;
     
     [SerializeField] private GameObject zorb;
+    private Mesh _zorbMesh;
     
     private Alteruna.Avatar _alterunaAvatar;
 
@@ -40,21 +40,23 @@ public class ZorbCam : MonoBehaviour {
             _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         }
         
+        _zorbMesh = zorb.GetComponent<MeshFilter>().mesh;
+        
         _alterunaAvatar = GetComponent<Alteruna.Avatar>();
     }
 
     private void Start() {
+        if (!_alterunaAvatar.IsMe) return;
         _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-        _originalCameraTargetY = CinemachineCameraTarget.transform.localPosition.y;
     }
 
     private void Update() {
         if (!_alterunaAvatar.IsMe) return;
         CinemachineCameraTarget.transform.rotation = Quaternion.Euler(0f, _cinemachineTargetYaw, 0f);
-        CinemachineCameraTarget.transform.position = new Vector3(zorb.transform.position.x, _originalCameraTargetY, zorb.transform.position.z);
         
-        CameraRotation();
-        ApplyCameraRotation();
+        float cameraY = zorb.transform.position.y + _zorbMesh.bounds.extents.y;
+        
+        CinemachineCameraTarget.transform.position = new Vector3(zorb.transform.position.x, cameraY, zorb.transform.position.z);
     }
 
     private void LateUpdate() {

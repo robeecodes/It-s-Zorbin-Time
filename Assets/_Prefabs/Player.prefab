@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2469579596417439134}
   - component: {fileID: 2932993869682785986}
   - component: {fileID: 438764661006326975}
+  - component: {fileID: 5856377789636538331}
   m_Layer: 8
   m_Name: Zorb
   m_TagString: Untagged
@@ -22,21 +23,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1911058766453219580
-Transform:
+--- !u!224 &1911058766453219580
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911058766453219579}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.7518059, y: 1.7518059, z: 1.7518059}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2692045558174644309}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.9}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!33 &1911058766453219583
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -132,7 +137,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911058766453219579}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -148,7 +153,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 2
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &2932993869682785986
@@ -209,6 +214,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.49999997
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5856377789636538331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911058766453219579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a99d58afbfb604daf4cf2b05383037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alterunaAvatar: {fileID: 5431249093745653127}
+  grounded: 0
 --- !u!1 &3983827668399512551
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +344,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.7
-  zorb: {fileID: 2932993869682785986}
+  jumpForce: 50
+  zorb: {fileID: 1911058766453219579}
 --- !u!114 &3162998714213543734
 MonoBehaviour:
   m_ObjectHideFlags: 0
