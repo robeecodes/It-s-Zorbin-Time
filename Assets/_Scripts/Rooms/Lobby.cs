@@ -1,9 +1,12 @@
 using Alteruna;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Lobby : MonoBehaviour
+public class Lobby : AttributesSync
 {
     [SerializeField] private Multiplayer multiplayer;
+    [SerializeField] private GameObject button;
     private bool _loading;
 
     private void Awake() {
@@ -11,7 +14,25 @@ public class Lobby : MonoBehaviour
     }
     
     private void Update() {
-        if (multiplayer.GetUsers().Count != 1 || _loading) return;
+        if (multiplayer.GetUsers().Count >= 2)
+        {
+            button.SetActive(true);
+        }
+        else
+        {
+            button.SetActive(false);
+        }
+    }
+
+    public void StartButtonPressed()
+    {
+        BroadcastRemoteMethod("LoadGame");
+    }
+
+    [SynchronizableMethod]
+    void LoadGame()
+    {
+        Debug.Log("Loading game . . .\n");
         multiplayer.LoadScene("Game");
         _loading = true;
     }
