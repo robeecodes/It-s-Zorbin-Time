@@ -1589,6 +1589,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6837f12ccb660b498b8513b2a37fc63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Multiplayer: {fileID: 0}
+  _uidString: 19f140b8-70fc-4762-9f26-a2b6fd551ad3
+  Reliability: 1
+  LocalMethodBehavior: 0
   multiplayer: {fileID: 1703586680}
   button: {fileID: 774884537}
 --- !u!1 &1703586679

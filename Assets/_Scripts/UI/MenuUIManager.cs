@@ -23,7 +23,7 @@ public class UI : MonoBehaviour
     // Main Menu Buttons
     public void OnStartPressed()
     {
-        SceneManager.LoadScene("Character Select");
+        SceneManager.LoadScene("Lobby");
     }
     public void OnQuitPressed()
     {

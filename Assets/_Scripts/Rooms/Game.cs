@@ -1,8 +1,9 @@
+using System.Linq;
 using Alteruna;
 using UnityEngine;
 
 public class Game : MonoBehaviour {
-    [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] public Transform[] spawnPoints;
     private Multiplayer _multiplayer;
     private bool _moved;
 
@@ -11,21 +12,25 @@ public class Game : MonoBehaviour {
     }
 
     private void Update() {
-        if (!_moved) {
-            MoveZorbs();
-            _moved = true;
-        }
-        
+        if (_moved) return;
+        _moved = true;
+        MoveZorbs();
+
     }
 
     private void MoveZorbs() {
-        var avatars = _multiplayer.GetAvatars();
+        var zorbs = GameObject.FindGameObjectsWithTag("Zorb");
 
-        for (int i = 0; i < avatars.Count; i++) {
-            Alteruna.Avatar playerAvatar = avatars[i];
-
-            if (playerAvatar) {
-                playerAvatar.transform.position = spawnPoints[i].position;
+        for (int i = 0; i < zorbs.Length; i++) {
+            var zorb = zorbs[i];
+            
+            var _rb = zorb.GetComponent<RigidbodySynchronizable>();
+            _rb.velocity = Vector3.zero;
+            _rb.angularVelocity = Vector3.zero;
+            _rb.Sleep();
+            
+            if (zorb) {
+                _rb.position = spawnPoints[i].position;
             }
         }
     }

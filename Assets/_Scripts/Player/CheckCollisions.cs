@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class CheckCollisions : MonoBehaviour {
     [SerializeField] private Alteruna.Avatar alterunaAvatar;
-
+    
     private RigidbodySynchronizable _rb;
     private float _distToGround;
+    private Health _health;
 
     public bool grounded;
 
     private void Awake() {
         _rb = GetComponent<RigidbodySynchronizable>();
+        _health = GetComponent<Health>();
     }
     
     private void Start() {
@@ -30,8 +32,10 @@ public class CheckCollisions : MonoBehaviour {
         var collisionBody = collision.gameObject.GetComponent<RigidbodySynchronizable>();
         if (_rb.velocity.magnitude > collisionBody.velocity.magnitude) {
             collisionBody.AddForce(transform.forward * 100, ForceMode.Impulse);
+            collision.gameObject.GetComponent<Health>().BroadcastRemoteMethod("TakeDamage", 10);
         } else {
             _rb.AddForce(collision.transform.forward * 100, ForceMode.Impulse);
+            _health.BroadcastRemoteMethod("TakeDamage", 10);
         }
     }
 }

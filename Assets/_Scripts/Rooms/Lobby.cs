@@ -7,33 +7,24 @@ public class Lobby : AttributesSync
 {
     [SerializeField] private Multiplayer multiplayer;
     [SerializeField] private GameObject button;
-    private bool _loading;
 
     private void Awake() {
         DontDestroyOnLoad(Camera.main);
     }
     
     private void Update() {
-        if (multiplayer.GetUsers().Count >= 2)
-        {
-            button.SetActive(true);
-        }
-        else
-        {
-            button.SetActive(false);
-        }
+        button.SetActive(multiplayer.GetUsers().Count >= 2);
     }
 
     public void StartButtonPressed()
     {
         BroadcastRemoteMethod("LoadGame");
+        LoadGame();
     }
 
     [SynchronizableMethod]
-    void LoadGame()
+    private void LoadGame()
     {
-        Debug.Log("Loading game . . .\n");
         multiplayer.LoadScene("Game");
-        _loading = true;
     }
 }
