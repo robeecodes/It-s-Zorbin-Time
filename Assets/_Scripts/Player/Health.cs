@@ -46,7 +46,8 @@ public class Health : AttributesSync {
             _rb.position = new Vector3(-14.01f, 2.7f, -16.58f);
             _isDead = false;
         } else {
-            SceneManager.LoadScene("Title Menu");
+            _rb.position = new Vector3(0f, -200f, 0f);
+            
         }
     }
 }
