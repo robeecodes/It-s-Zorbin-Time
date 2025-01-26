@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class CheckCollisions : MonoBehaviour {
     [SerializeField] private Alteruna.Avatar alterunaAvatar;
-    
+
+    private AudioSource rebound_sound;
     private RigidbodySynchronizable _rb;
     private float _distToGround;
     private Health _health;
@@ -13,6 +14,7 @@ public class CheckCollisions : MonoBehaviour {
     private void Awake() {
         _rb = GetComponent<RigidbodySynchronizable>();
         _health = GetComponent<Health>();
+        rebound_sound = GameObject.FindWithTag("SFX Manager").GetComponents<AudioSource>()[0];
     }
     
     private void Start() {
@@ -29,6 +31,7 @@ public class CheckCollisions : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         if (!alterunaAvatar.IsMe) return;
         if (collision.gameObject.name != "Zorb") return;
+        rebound_sound.Play();
         var collisionBody = collision.gameObject.GetComponent<RigidbodySynchronizable>();
         if (_rb.velocity.magnitude > collisionBody.velocity.magnitude) {
             collisionBody.AddForce(transform.forward * 100, ForceMode.Impulse);

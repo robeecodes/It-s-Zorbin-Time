@@ -6,7 +6,8 @@ public class ControlZorb : MonoBehaviour {
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private GameObject zorb;
-    
+
+    private AudioSource jump_sound;
     private CheckCollisions _zorbCollider;
     private RigidbodySynchronizable _zorbRigidbody;
     
@@ -18,12 +19,14 @@ public class ControlZorb : MonoBehaviour {
         _mainCamera = Camera.main;
         _zorbCollider = zorb.GetComponent<CheckCollisions>();
         _zorbRigidbody = zorb.GetComponent<RigidbodySynchronizable>();
+        jump_sound = GameObject.FindWithTag("SFX Manager").GetComponents<AudioSource>()[1];
     }
-    
+
     private void Update() {
         if (!_avatar.IsMe) return;
         if (Input.GetKeyDown(KeyCode.Space) && _zorbCollider.grounded) {
             _zorbRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jump_sound.Play();
         }
     }
 

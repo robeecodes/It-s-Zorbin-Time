@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - Zorb
+  - SFX Manager
   layers:
   - Default
   - TransparentFX
